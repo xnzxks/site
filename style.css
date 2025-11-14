@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(circle at top left, #1e1f25, #111);
+  color: #fff;
+  display: flex;
+  align-items: flex-start; /* content starts from top */
+  justify-content: center;
+  overflow-y: auto;
+  padding-top: 20px; /* optional spacing from top */
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  height:85vh;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  flex-direction: row;
+}
+
+/* ==================== LEFT CONTACT ==================== */
+
+.contact {
+  flex: 1;
+  background: rgba(30, 31, 40, 0.7);
+  backdrop-filter: blur(20px);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact h2 {
+  font-size: 28px;
+  color: #a8b1ff;
+  margin-bottom: 10px;
+}
+
+.contact p {
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 14px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #5865f2;
+  box-shadow: 0 0 10px #5865f2;
+}
+
+.contact-form button {
+  background: linear-gradient(135deg, #5865f2, #00bcd4);
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ==================== RIGHT CONTENT ==================== */
+
+.content {
+  flex: 2;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align hero content to top */
+  background: linear-gradient(135deg, #1b1c22, #242635);
+}
+
+/* HERO ROW (left and right) */
+
+.hero-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+/* Left hero */
+.hero-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* paragraphs at top */
+  text-align: center; /* center h1 */
+}
+
+.hero-left h1 {
+  width: 100%;
+  font-size: 38px;
+  background: linear-gradient(90deg, #5865f2, #00bcd4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.hero-left p {
+  color: #bbb;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 0; /* paragraph at top */
+}
+
+/* Right hero */
+.hero-right {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* paragraphs at top */
+}
+
+.hero-right h1 {
+  font-size: 34px;
+  background: linear-gradient(90deg, #00bcd4, #5865f2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.hero-right p {
+  color: #bbb;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 0;
+}
+
+/* ==================== SHOWCASE CARDS ==================== */
+
+.showcase {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  flex: 1 1 calc(33% - 20px);
+  min-width: 250px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(88,101,242,0.5);
+  border-color: rgba(88,101,242,0.4);
+}
+
+.card h3 {
+  color: #a8b1ff;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #ccc;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media(max-width:900px) {
+  body {
+    overflow-y: auto;
+  }
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+  .contact, .content {
+    flex: none;
+    padding: 40px 25px;
+  }
+  .showcase {
+    flex-direction: column;
+  }
+}

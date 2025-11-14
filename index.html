@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boty Discord, proste strony</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Left: Formularz kontaktowy -->
+    <section class="contact">
+      <h2>Wprowadź formę kontaktową</h2>
+      <p>Chcesz własnego bota na Discorda lub stronę jak ta? Skontaktuj się!</p>
+      <form id="contact-form" class="contact-form">
+        <input type="text" name="name" placeholder="Twoje imię" required>
+        <input type="email" name="email" placeholder="Twój email" required>
+        <textarea name="message" rows="5" placeholder="Twoja wiadomość" required></textarea>
+        <div class="g-recaptcha" data-sitekey="6LeUhgwsAAAAABxnD3vhYXN89moc-Kx3xnKeSZTK"></div>
+        <button type="submit">Wyślij</button>
+      </form>
+      <p id="status-message"></p>
+    </section>
+
+    <!-- Right: Treść i showcase -->
+    <section class="content">
+
+  <!-- Full-width centered heading -->
+  <h1 class="hero-main">Boty Discord & Proste Strony WWW</h1>
+
+  <div class="hero-row">
+    <div class="hero hero-left">
+      <p>Automatyzuj swój serwer Discord dzięki botom, które pracują 24/7 — moderacja, powiadomienia, role, logi i integracje bez dodatkowej obsługi.</p>
+    </div>
+
+    <div class="hero hero-right">
+      <p>Dodatkowe funkcje: integracje API, powiadomienia, automatyczne role, logi i panel konfiguracji dostosowany do Twojego serwera.</p>
+    </div>
+  </div>
+
+  <div class="showcase" id="showcase"></div>
+
+</section>
+
+
+
+  <script>
+    // Inicjalizacja EmailJS
+    emailjs.init("oi4jecE8lrXRAJIIb");
+
+    const form = document.getElementById("contact-form");
+    const statusMessage = document.getElementById("status-message");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        statusMessage.textContent = "Potwierdź, że nie jesteś robotem!";
+        statusMessage.style.color = "red";
+        return;
+      }
+
+      try {
+        await emailjs.send("service_shygdq8", "template_2nqi5ez", {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          message: form.message.value.trim(),
+          "g-recaptcha-response": recaptchaResponse
+        });
+        statusMessage.textContent = "Wiadomość wysłana!";
+        statusMessage.style.color = "lightgreen";
+        form.reset();
+        grecaptcha.reset();
+      } catch (err) {
+        statusMessage.textContent = "Błąd wysyłki!";
+        statusMessage.style.color = "red";
+        grecaptcha.reset();
+      }
+    });
+
+    // Showcase karty
+    const cards = [
+      {
+        title: "Bot serwerowy",
+        description: "Moderacja z kontrolą ról, automatycznymi ostrzeżeniami i poleceniami slash."
+      },
+      {
+        title: "Strona WWW",
+        description: "Czysty, responsywny design przy użyciu HTML, CSS i lekkiego backendu PHP."
+      }
+    ];
+
+    const showcase = document.getElementById("showcase");
+    cards.forEach(card => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "card";
+      cardDiv.innerHTML = `<h3>${card.title}</h3><p>${card.description}</p>`;
+      showcase.appendChild(cardDiv);
+    });
+  </script>
+</body>
+</html>
